@@ -1,14 +1,8 @@
 namespace ConferenceBooking.Domain.Exceptions
 {
-    /// <summary>
-    /// Виключення, що виникає при невалідних параметрах бронювання
-    /// (некоректні дати, тривалість, послуги тощо).
-    /// </summary>
+    /// <summary>Невалідні параметри бронювання.</summary>
     public class InvalidBookingException : DomainException
     {
-        public InvalidBookingException(string message)
-            : base(message)
-        {
-        }
+        public InvalidBookingException(string message) : base(message) { }
     }
 }
