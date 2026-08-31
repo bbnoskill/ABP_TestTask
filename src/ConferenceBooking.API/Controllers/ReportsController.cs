@@ -25,12 +25,10 @@ namespace ConferenceBooking.API.Controllers
             [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
             if (startDate > endDate)
-            {
-                return NotFound();
-            }
-            var report = await _reportService.GetRoomUsageReportAsync(startDate, endDate);
+                return BadRequest("startDate не може бути пізніше endDate.");
 
-            var response = _mapper.Map<RoomUsageReportDto>(report);
+            var report = await _reportService.GetRoomUsageReportAsync(startDate, endDate);
+            var response = _mapper.Map<IEnumerable<RoomUsageReportDto>>(report);
             return Ok(response);
         }
 
@@ -40,11 +38,9 @@ namespace ConferenceBooking.API.Controllers
             [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
             if (startDate > endDate)
-            {
-                return NotFound();
-            }
+                return BadRequest("startDate не може бути пізніше endDate.");
+
             var report = await _reportService.GetRevenueReportAsync(startDate, endDate);
-            
             var response = _mapper.Map<RevenueReportDto>(report);
             return Ok(response);
         }
@@ -55,11 +51,10 @@ namespace ConferenceBooking.API.Controllers
             [FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
             if (startDate > endDate)
-            {
-                return NotFound();
-            }
+                return BadRequest("startDate не може бути пізніше endDate.");
+
             var report = await _reportService.GetPopularServicesReportAsync(startDate, endDate);
-            var response = _mapper.Map<PopularServicesReportDto>(report);
+            var response = _mapper.Map<IEnumerable<PopularServicesReportDto>>(report);
             return Ok(response);
         }
     }

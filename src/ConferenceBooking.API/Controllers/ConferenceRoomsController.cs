@@ -64,7 +64,7 @@ namespace ConferenceBooking.API.Controllers
             var startDateTime = search.Date + search.StartTime;
             var endDateTime = search.Date + search.EndTime;
             
-            var rooms = _roomService.GetAvailableRoomsAsync(startDateTime, endDateTime, search.Capacity);
+            var rooms = await _roomService.GetAvailableRoomsAsync(startDateTime, endDateTime, search.Capacity);
 
             var response = _mapper.Map<IEnumerable<ConferenceRoomResponseDto>>(rooms);
             return Ok(response);
